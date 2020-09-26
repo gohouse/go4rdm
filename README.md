@@ -24,6 +24,8 @@ after download go4rdm, you can see the executable file in `${GOPATH}/bin` direct
 `go4rdm`(linux,mac) or `go4rdm.exe`(windows)  
 just run it, you can see:  
 
+## [click for big image view](./assets/readme.md)  
+
 win | linux | mac  
 ---|---|---  
 ![](assets/1.jpg) | ![](assets/2.jpg) | ![](assets/3.jpg)  
