@@ -1,0 +1,1 @@
+CGO_ENABLED=0 GOOS=windows GOARCH=amd64 CGO_ENABLED=1 go build -o rdm.exe main.go && upx rdm.exe
