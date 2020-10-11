@@ -17,7 +17,7 @@ go4rdm is golang for redis desktop manager, a cross-platform application written
     ```
 3. download go4rdm  
 ```sh
-go get -u github.com/gohouse/go4rdm/cmd/go4rdm  
+go get -u github.com/gohouse/go4rdm
 ```
 
 after download go4rdm, you can see the executable file in `${GOPATH}/bin` directory which named  
