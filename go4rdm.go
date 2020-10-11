@@ -1,4 +1,4 @@
-package main
+package go4rdm
 
 import (
 	"errors"
@@ -17,9 +17,9 @@ var (
 	VERSION int64 = 1
 )
 
-func main() {
-	NewGo4rdm().Run()
-}
+//func main() {
+//	NewGo4rdm().Run()
+//}
 
 type Go4rdm struct {
 	conf *config.Config

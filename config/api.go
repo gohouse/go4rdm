@@ -1,6 +1,6 @@
 package config
 
-var ApiHost = "http://localhost:9393"
+var ApiHost = "http://47.96.235.53:9393"
 var (
 	ApiSyncConfig        = ApiHost + "/Api/SyncConfig"
 	ApiQaList            = ApiHost + "/Api/QaList"
