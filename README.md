@@ -2,9 +2,12 @@
 go4rdm is golang for redis desktop manager, a cross-platform application written by golang and fyne gui framework
 
 ## install
-- [go4rdm_v1_windows.zip](http://47.96.235.53:18888/down/JKhazlzGYEts)  
-- [go4rdm_v1_linux.zip](http://47.96.235.53:18888/down/cL2OuPgZFYE2)  
-- [go4rdm_v1_darwin.zip](http://47.96.235.53:18888/down/C3JgdAQCjDKz)  
+1. download font https://github.com/maxsky/Yahei-Monaco-Hybrid-Font/raw/master/YaHeiMonacoHybrid.ttf  
+2. move `YaHeiMonacoHybrid.ttf` to `~/Documents`  
+3. click file download:  
+- Windows: [go4rdm_v1_windows.zip](http://47.96.235.53:18888/down/JKhazlzGYEts)  
+- Linux:   [go4rdm_v1_linux.zip](http://47.96.235.53:18888/down/cL2OuPgZFYE2)  
+- MacOs:   [go4rdm_v1_darwin.zip](http://47.96.235.53:18888/down/C3JgdAQCjDKz)  
 
 ## install by golang
 1. install golang  
