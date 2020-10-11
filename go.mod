@@ -11,7 +11,7 @@ require (
 	github.com/go-redis/redis v6.15.9+incompatible
 	github.com/gohouse/e v0.0.3-rc.0.20200724104652-25ebf8c9c305
 	github.com/gohouse/golib v0.0.0-20200925043701-a9313fb00833
-	github.com/gohouse/t v0.0.0-20200803075407-c3e80980be23
+	github.com/gohouse/t v0.0.0-20201007094014-630049a6bfe9
 	github.com/gopherjs/gopherjs v0.0.0-20200217142428-fce0ec30dd00 // indirect
 	github.com/onsi/ginkgo v1.14.1 // indirect
 	github.com/onsi/gomega v1.10.2 // indirect
