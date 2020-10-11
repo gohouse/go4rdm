@@ -16,3 +16,4 @@ vendor/
 fyne-cross
 *.zip
 *.bin
+.DS_Store

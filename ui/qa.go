@@ -10,6 +10,7 @@ import (
 	"github.com/gohouse/go4rdm/data"
 	"github.com/gohouse/go4rdm/event"
 	"log"
+	"net/url"
 )
 
 type QA struct {
@@ -35,9 +36,11 @@ func (qa *QA) Build() fyne.CanvasObject {
 }
 
 func (qa *QA) buildLeft() fyne.CanvasObject {
+	parse, _ := url.Parse("https://github.com/maxsky/Yahei-Monaco-Hybrid-Font/raw/master/YaHeiMonacoHybrid.ttf")
 	container := widget.NewTabContainer(
 		widget.NewTabItem("Question", qa.buildQuestion()),
 		widget.NewTabItem("Answer", NewQADetail(qa.ui.Window).Build()),
+		widget.NewTabItem("Chinese Font Download", widget.NewHyperlink("中文字体下载(download YaHeiMonacoHybrid.ttf)", parse)),
 	)
 
 	qa.tabContailner = container
