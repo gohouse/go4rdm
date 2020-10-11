@@ -252,6 +252,9 @@ func (rdmct *RdmContent) Notify(evt event.EventObject) {
 	}
 }
 func (rdmct *RdmContent) rebuildList(drkl *data.DataRedisContent) {
+	if rdmct.currentKey == "" {
+		return
+	}
 	if drkl == nil {
 		drkl = rdmct.drkl
 	}

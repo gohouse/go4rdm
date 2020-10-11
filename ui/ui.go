@@ -5,13 +5,17 @@ import (
 	"fmt"
 	"fyne.io/fyne"
 	"fyne.io/fyne/app"
+	"fyne.io/fyne/canvas"
 	"fyne.io/fyne/dialog"
+	"fyne.io/fyne/layout"
 	"fyne.io/fyne/theme"
 	"fyne.io/fyne/widget"
 	"github.com/gohouse/go4rdm/config"
 	"github.com/gohouse/go4rdm/data"
 	"github.com/gohouse/go4rdm/event"
+	"github.com/gohouse/go4rdm/resource"
 	"github.com/gohouse/go4rdm/uitheme"
+	"image/color"
 	"os"
 )
 func init() {
@@ -61,7 +65,16 @@ func (ui *UI) Build() {
 
 	container.SetTabLocation(widget.TabLocationTrailing)
 
-	w.SetContent(container)
+	//bg := canvas.NewImageFromFile("assets/sword.png")
+	//bg := canvas.NewImageFromFile("11.jpg")
+	//bg := canvas.NewImageFromFile("12.jpg")
+	//bg := canvas.NewImageFromFile("12_1.jpg")
+	//bg := canvas.NewImageFromFile("17.jpg")
+	//bg := canvas.NewImageFromFile("18.jpg")
+	bg := canvas.NewImageFromResource(resource.BgOfWindow)
+	bg.Translucency = 0.95
+	w.SetContent(fyne.NewContainerWithLayout(layout.NewMaxLayout(), container, bg))
+
 	// 初始化数据
 	if len(ui.conf.Connections) > 0 {
 		go event.Produce(event.ETconnectionInit, ui.conf.Connections)
@@ -69,6 +82,12 @@ func (ui *UI) Build() {
 	w.ShowAndRun()
 }
 
+func rgbGradient(x, y, w, h int) color.Color {
+	g := int(float32(x) / float32(w) * float32(255))
+	b := int(float32(y) / float32(h) * float32(255))
+
+	return color.NRGBA{uint8(255 - b), uint8(g), uint8(b), 0xff}
+}
 func (ui *UI) makeHomeCanvas() fyne.CanvasObject {
 	return widget.NewLabel("test")
 
