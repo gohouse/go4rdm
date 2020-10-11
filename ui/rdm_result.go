@@ -127,6 +127,7 @@ func (rdmct *RdmContent) buildTop() fyne.CanvasObject {
 		editMod.Style = widget.DefaultButton
 		modLabel.SetText("view mod")
 		config.NewConfig().UiConf.ContentMode = "view"
+		config.NewConfig().Save()
 		rdmct.rebuildList(nil)
 		viewMod.Refresh()
 		editMod.Refresh()
@@ -136,6 +137,7 @@ func (rdmct *RdmContent) buildTop() fyne.CanvasObject {
 		viewMod.Style = widget.DefaultButton
 		modLabel.SetText("edit mod")
 		config.NewConfig().UiConf.ContentMode = "edit"
+		config.NewConfig().Save()
 		rdmct.rebuildList(nil)
 		viewMod.Refresh()
 		editMod.Refresh()
