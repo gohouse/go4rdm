@@ -59,15 +59,20 @@ func (rdm *Rdm) buildLeft() fyne.CanvasObject {
 
 func (rdm *Rdm) buildRight() fyne.CanvasObject {
 	// tabgroup
-	tabgroup := widget.NewTabContainer(
-		widget.NewTabItemWithIcon("Connection", theme.ContentAddIcon(), NewRdmConnManage(rdm.ui.Window).Build()),
-		widget.NewTabItemWithIcon(
-			"Result", theme.MenuIcon(),
-			NewRdmContent(rdm.ui.Window).Build(),
-		),
-		widget.NewTabItemWithIcon("Command", theme.MediaPlayIcon(), NewRdmCommand(rdm.ui.Window).Build()),
-	)
-	tabgroup.SelectTabIndex(2)
+	var body = []*widget.TabItem{
+		{Text: "Connection", Icon: theme.ContentAddIcon(), Content: NewRdmConnManage(rdm.ui.Window).Build()},
+		{Text: "Result", Icon: theme.MenuIcon(), Content: NewRdmContent(rdm.ui.Window).Build()},
+		{Text: "Command", Icon: theme.MediaPlayIcon(), Content: NewRdmCommand(rdm.ui.Window).Build()},
+	}
+	tabgroup := widget.NewTabContainer()
+	var index = 0
+	for k, v := range body {
+		tabgroup.Append(widget.NewTabItemWithIcon(v.Text, v.Icon, v.Content))
+		if rdm.ui.conf.UiConf.DefaultRdm == v.Text {
+			index = k
+		}
+	}
+	tabgroup.SelectTabIndex(index)
 
 	rdm.tabgroup = tabgroup
 

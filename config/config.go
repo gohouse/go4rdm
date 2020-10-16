@@ -52,6 +52,8 @@ type UiConf struct {
 	ContentMode       string    // view / edit
 	DefaultWindowSize fyne.Size // 窗口默认大小
 	Theme             string    // dark,light
+	DefaultPage       string    // Home
+	DefaultRdm        string    // Command
 }
 type ApiUrl struct {
 	UrlForDocument string // 文档地址

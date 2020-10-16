@@ -15,22 +15,28 @@ import (
 	"github.com/gohouse/go4rdm/event"
 	"github.com/gohouse/go4rdm/resource"
 	"github.com/gohouse/go4rdm/uitheme"
+	"github.com/gohouse/golib/file"
 	"image/color"
 	"os"
 )
+
 func init() {
 	//设置中文字体
 	dir, err := os.UserHomeDir()
-	if err!=nil {
+	if err != nil {
 		panic(err.Error())
 	}
-	os.Setenv("FYNE_FONT",fmt.Sprintf("%s/%s", dir,"Documents/YaHeiMonacoHybrid.ttf"))
+	var fontfile = fmt.Sprintf("%s/%s", dir, "Documents/YaHeiMonacoHybrid.ttf")
+	if file.FileExists(fontfile) {
+		os.Setenv("FYNE_FONT", fontfile)
+	}
 }
+
 type UI struct {
-	conf   *config.Config
-	data   *data.Redis
-	App    fyne.App
-	Window fyne.Window
+	conf        *config.Config
+	data        *data.Redis
+	App         fyne.App
+	Window      fyne.Window
 	DefaultSize fyne.Size
 }
 
@@ -38,8 +44,12 @@ func NewUI(conf *config.Config, data *data.Redis) *UI {
 	return &UI{conf: conf, data: data, DefaultSize: fyne.NewSize(1000, 600)}
 }
 
+func (ui *UI) SetTheme(th fyne.Theme) {
+	ui.App.Settings().SetTheme(th)
+}
+
 func (ui *UI) Build() {
-	a := app.NewWithID("github.com/gohouse")
+	a := app.NewWithID("github.com.gohouse.go4rdm")
 	w := a.NewWindow("go for redis desktop manager")
 
 	defer func() {
@@ -51,17 +61,26 @@ func (ui *UI) Build() {
 	w.Resize(ui.DefaultSize)
 	ui.App = a
 	ui.Window = w
-	a.Settings().SetTheme(uitheme.NewDarkBlueNormal())
+	ui.SetTheme(uitheme.NewDarkBlueNormal())
 
 	// build body
-	container := widget.NewTabContainer(
-		widget.NewTabItemWithIcon("", theme.HomeIcon(), NewHome(ui).Build()),
-		widget.NewTabItemWithIcon("", theme.StorageIcon(), NewRdm(ui).Build()),
-		widget.NewTabItemWithIcon("", theme.HelpIcon(), NewQA(ui).Build()),
-		//widget.NewTabItemWithIcon("", theme.NewThemedResource(resource.IconOfChat,nil), NewChat(ui).Build()),
-		widget.NewTabItemWithIcon("", theme.SettingsIcon(), NewSetting(ui).Build()),
-		widget.NewTabItemWithIcon("", theme.FileTextIcon(), NewDocument(ui).Build()),
-	)
+	var body = []*widget.TabItem{
+		{Text: "Home", Icon: theme.HomeIcon(), Content: NewHome(ui).Build()},
+		{Text: "RedisManager", Icon: theme.StorageIcon(), Content: NewRdm(ui).Build()},
+		{Text: "QA", Icon: theme.HelpIcon(), Content: NewQA(ui).Build()},
+		{Text: "Setting", Icon: theme.SettingsIcon(), Content: NewSetting(ui).Build()},
+		{Text: "Document", Icon: theme.FileTextIcon(), Content: NewDocument(ui).Build()},
+	}
+	container := widget.NewTabContainer()
+	for k, v := range body {
+		container.Append(widget.NewTabItemWithIcon("", v.Icon, v.Content))
+		if ui.conf.UiConf.DefaultPage == v.Text {
+			container.SelectTabIndex(k)
+		}
+	}
+	if ui.conf.UiConf.DefaultPage == "" {
+		container.SelectTabIndex(0)
+	}
 
 	container.SetTabLocation(widget.TabLocationTrailing)
 

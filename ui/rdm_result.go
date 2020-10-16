@@ -311,7 +311,7 @@ func (rdmct *RdmContent) rebuildListForEit(drkl *data.DataRedisContent) {
 				label2 := widget.NewEntry()
 				label2.SetText(vo)
 				label2.Disable()
-				field := widget.NewHBox(label1, label2)
+				field :=  widget.NewHScrollContainer(label2)
 				value := widget.NewMultiLineEntry()
 				value.SetText(v2)
 				value.Wrapping = fyne.TextWrapWord
@@ -330,7 +330,7 @@ func (rdmct *RdmContent) rebuildListForEit(drkl *data.DataRedisContent) {
 						go event.Produce(event.ETredisValUpdate, &drklForOper)
 					}))
 				rdmct.currentWidget.Children = append(rdmct.currentWidget.Children,
-					widget.NewVBox(fyne.NewContainerWithLayout(layout.NewBorderLayout(nil, nil, nil, btn), field, btn), value))
+					widget.NewVBox(fyne.NewContainerWithLayout(layout.NewBorderLayout(nil, nil, label1, btn),label1, field, btn), value))
 			}
 			//rdmct.currentWidget.Refresh()
 			if rdmct.currentEntry.Disabled() {
@@ -503,7 +503,7 @@ func (rdmct *RdmContent) rebuildListForView(drkl *data.DataRedisContent) {
 			var text string
 			for _, v2 := range v {
 				var vo = v2
-				text = fmt.Sprintf("%sscore: %s\n\n", text, vo)
+				text = fmt.Sprintf("%s%s\n\n", text, vo)
 			}
 			showEntry.SetText(text)
 			rdmct.currentWidget.Children = append(rdmct.currentWidget.Children, showEntry)
