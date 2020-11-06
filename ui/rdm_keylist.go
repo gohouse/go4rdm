@@ -176,7 +176,7 @@ func (rdmkl *RdmKeylist) buildKeyListWidgetWithList(data []string) {
 		//item.(*fyne.Container).Objects[1].(*widget.Label).SetText(drkl.Result[index])
 		item.(*widget.Label).SetText(data[index])
 	})
-	list.OnItemSelected = func(index int) {
+	list.OnSelected = func(index int) {
 		//rdmkl.currentWidget.Refresh()
 		go event.Produce(event.ETredisKeyClick, data[index])
 	}
