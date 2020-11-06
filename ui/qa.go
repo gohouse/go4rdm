@@ -103,7 +103,7 @@ func (qa *QA) buildQuestionList() {
 			item.(*widget.Label).SetText(fmt.Sprintf("%v. %s",datas[index].Id, datas[index].Content))
 		},
 	)
-	list.OnItemSelected = func(index int) {
+	list.OnSelected = func(index int) {
 		qa.tabContailner.SelectTabIndex(1)
 		go event.Produce(event.ETqaClick, &datas[index])
 	}

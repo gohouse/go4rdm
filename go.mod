@@ -3,7 +3,7 @@ module github.com/gohouse/go4rdm
 go 1.14
 
 require (
-	fyne.io/fyne v1.3.4-0.20200921210037-ded5a51376bb
+	fyne.io/fyne v1.4.0
 	github.com/atotto/clipboard v0.1.2
 	github.com/blockpane/prettyfyne v0.0.0-20200910224427-ab9af6316e6c
 	github.com/denisbrodbeck/machineid v1.0.1

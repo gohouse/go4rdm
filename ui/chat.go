@@ -54,7 +54,7 @@ func (c *Chat) buildUserList() fyne.CanvasObject {
 		//item.(*fyne.Container).Objects[1].(*widget.Label).SetText(drkl.Result[index])
 		item.(*widget.Label).SetText(dataarr[index])
 	})
-	list.OnItemSelected = func(index int) {
+	list.OnSelected = func(index int) {
 		//rdmkl.currentWidget.Refresh()
 		//go event.Produce(event.ETredisKeyClick, data[index])
 		c.chatEntry.SetText(fmt.Sprintf("@%s %s", dataarr[index], c.chatEntry.Text))
@@ -234,7 +234,7 @@ func (c *Chat) heartBeat() {
 //		//item.(*fyne.Container).Objects[1].(*widget.Label).SetText(drkl.Result[index])
 //		item.(*widget.Label).SetText(users[index].Nickname)
 //	})
-//	list.OnItemSelected = func(index int) {
+//	list.OnSelected = func(index int) {
 //		//rdmkl.currentWidget.Refresh()
 //		//go event.Produce(event.ETredisKeyClick, data[index])
 //		c.chatEntry.SetText(fmt.Sprintf("@%s %s", users[index].Nickname, c.chatEntry.Text))
@@ -280,7 +280,7 @@ func (c *Chat) updateUserList(msgs data.Message) {
 			//item.(*fyne.Container).Objects[1].(*widget.Label).SetText(drkl.Result[index])
 			item.(*widget.Label).SetText(users[index].Nickname)
 		})
-		list.OnItemSelected = func(index int) {
+		list.OnSelected = func(index int) {
 			//rdmkl.currentWidget.Refresh()
 			//go event.Produce(event.ETredisKeyClick, data[index])
 			c.chatEntry.SetText(fmt.Sprintf("@%s %s", users[index].Nickname, c.chatEntry.Text))
